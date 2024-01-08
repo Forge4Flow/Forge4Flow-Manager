@@ -2,9 +2,9 @@ name: build
 
 on:
   push:
-    branches: [ master ]
+    branches: [main]
   pull_request:
-    branches: [ master ]
+    branches: [main]
 
 jobs:
   build:
@@ -28,5 +28,3 @@ jobs:
         run: make prepare-test
       - name: test e2e
         run: make test-e2e
-
-

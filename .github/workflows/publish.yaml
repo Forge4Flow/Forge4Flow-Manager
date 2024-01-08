@@ -3,7 +3,7 @@ name: publish
 on:
   push:
     tags:
-      - '*'
+      - "*"
 
 jobs:
   publish:
@@ -23,4 +23,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          asset_paths: '["./bin/faasd*"]'
+          asset_paths: '["./bin/f4f-manager*"]'
