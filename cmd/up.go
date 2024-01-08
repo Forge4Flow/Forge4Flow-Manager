@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/signal"
@@ -20,13 +19,13 @@ import (
 	"github.com/forge4flow/forge4flow-manager/pkg"
 )
 
-// upConfig are the CLI flags used by the `faasd up` command to deploy the faasd service
+// upConfig are the CLI flags used by the `f4f-manager up` command to deploy the f4f-manager service
 type upConfig struct {
-	// composeFilePath is the path to the compose file specifying the faasd service configuration
+	// composeFilePath is the path to the compose file specifying the f4f-manager service configuration
 	// See https://compose-spec.io/ for more information about the spec,
 	//
 	// currently, this must be the name of a file in workingDir, which is set to the value of
-	// `faasdwd = /var/lib/faasd`
+	// `faasdwd = /var/lib/f4f-manager`
 	composeFilePath string
 
 	// working directory to assume the compose file is in, should be faasdwd.
@@ -40,7 +39,7 @@ func init() {
 
 var upCmd = &cobra.Command{
 	Use:   "up",
-	Short: "Start faasd",
+	Short: "Start Forge4Flow-Manager",
 	RunE:  runUp,
 }
 
@@ -88,7 +87,7 @@ func runUp(cmd *cobra.Command, _ []string) error {
 		sig := make(chan os.Signal, 1)
 		signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
 
-		log.Printf("faasd: waiting for SIGTERM or SIGINT\n")
+		log.Printf("f4f-manager: waiting for SIGTERM or SIGINT\n")
 		<-sig
 
 		log.Printf("Signal received.. shutting down server in %s\n", shutdownTimeout.String())
@@ -166,7 +165,7 @@ func makeFile(filePath, fileContents string) error {
 		return nil
 	} else if os.IsNotExist(err) {
 		log.Printf("Writing to: %q\n", filePath)
-		return ioutil.WriteFile(filePath, []byte(fileContents), workingDirectoryPermission)
+		return os.WriteFile(filePath, []byte(fileContents), workingDirectoryPermission)
 	} else {
 		return err
 	}
@@ -185,10 +184,10 @@ func loadServiceDefinition(cfg upConfig) ([]pkg.Service, error) {
 	return pkg.ParseCompose(serviceConfig)
 }
 
-// ConfigureUpFlags will define the flags for the `faasd up` command. The flag struct, configure, and
+// ConfigureUpFlags will define the flags for the `f4f-manager up` command. The flag struct, configure, and
 // parse are split like this to simplify testability.
 func configureUpFlags(flags *flag.FlagSet) {
-	flags.StringP("file", "f", "docker-compose.yaml", "compose file specifying the faasd service configuration")
+	flags.StringP("file", "f", "docker-compose.yaml", "compose file specifying the f4f-manager service configuration")
 }
 
 // ParseUpFlags will load the flag values into an upFlags object. Errors will be underlying
@@ -201,6 +200,6 @@ func parseUpFlags(cmd *cobra.Command) (upConfig, error) {
 	}
 
 	parsed.composeFilePath = path
-	parsed.workingDir = faasdwd
+	parsed.workingDir = f4fManagerWd
 	return parsed, err
 }

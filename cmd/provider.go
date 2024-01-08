@@ -3,14 +3,13 @@ package cmd
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
 	"path"
 
 	"github.com/containerd/containerd"
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	f4fManager "github.com/forge4flow/forge4flow-manager/pkg"
 	"github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
 	faasdlogs "github.com/forge4flow/forge4flow-manager/pkg/logs"
 	"github.com/forge4flow/forge4flow-manager/pkg/provider/config"
@@ -62,14 +61,14 @@ func runProviderE(cmd *cobra.Command, _ []string) error {
 		return err
 	}
 
-	writeHostsErr := ioutil.WriteFile(path.Join(wd, "hosts"),
+	writeHostsErr := os.WriteFile(path.Join(wd, "hosts"),
 		[]byte(`127.0.0.1	localhost`), workingDirectoryPermission)
 
 	if writeHostsErr != nil {
 		return fmt.Errorf("cannot write hosts file: %s", writeHostsErr)
 	}
 
-	writeResolvErr := ioutil.WriteFile(path.Join(wd, "resolv.conf"),
+	writeResolvErr := os.WriteFile(path.Join(wd, "resolv.conf"),
 		[]byte(`nameserver 8.8.8.8`), workingDirectoryPermission)
 
 	if writeResolvErr != nil {
@@ -93,7 +92,7 @@ func runProviderE(cmd *cobra.Command, _ []string) error {
 	baseUserSecretsPath := path.Join(wd, "secrets")
 	if err := moveSecretsToDefaultNamespaceSecrets(
 		baseUserSecretsPath,
-		faasd.DefaultFunctionNamespace); err != nil {
+		f4fManager.DefaultFunctionNamespace); err != nil {
 		return err
 	}
 
@@ -131,7 +130,7 @@ func moveSecretsToDefaultNamespaceSecrets(baseSecretPath string, defaultNamespac
 		return err
 	}
 
-	files, err := ioutil.ReadDir(baseSecretPath)
+	files, err := os.ReadDir(baseSecretPath)
 	if err != nil {
 		return err
 	}

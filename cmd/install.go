@@ -14,19 +14,19 @@ import (
 
 var installCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Install faasd",
+	Short: "Install Forge4Flow-Manager",
 	RunE:  runInstall,
 }
 
 const workingDirectoryPermission = 0644
 
-const faasdwd = "/var/lib/faasd"
+const f4fManagerWd = "/var/lib/f4f-manager"
 
 const faasdProviderWd = "/var/lib/faasd-provider"
 
 func runInstall(_ *cobra.Command, _ []string) error {
 
-	if err := ensureWorkingDir(path.Join(faasdwd, "secrets")); err != nil {
+	if err := ensureWorkingDir(path.Join(f4fManagerWd, "secrets")); err != nil {
 		return err
 	}
 
@@ -34,36 +34,36 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	if basicAuthErr := makeBasicAuthFiles(path.Join(faasdwd, "secrets")); basicAuthErr != nil {
+	if basicAuthErr := makeBasicAuthFiles(path.Join(f4fManagerWd, "secrets")); basicAuthErr != nil {
 		return errors.Wrap(basicAuthErr, "cannot create basic-auth-* files")
 	}
 
-	if err := cp("docker-compose.yaml", faasdwd); err != nil {
+	if err := cp("docker-compose.yaml", f4fManagerWd); err != nil {
 		return err
 	}
 
-	if err := cp("prometheus.yml", faasdwd); err != nil {
+	if err := cp("prometheus.yml", f4fManagerWd); err != nil {
 		return err
 	}
 
-	if err := cp("resolv.conf", faasdwd); err != nil {
+	if err := cp("resolv.conf", f4fManagerWd); err != nil {
 		return err
 	}
 
-	err := binExists("/usr/local/bin/", "faasd")
+	err := binExists("/usr/local/bin/", "f4f-manager")
 	if err != nil {
 		return err
 	}
 
 	err = systemd.InstallUnit("faasd-provider", map[string]string{
 		"Cwd":             faasdProviderWd,
-		"SecretMountPath": path.Join(faasdwd, "secrets")})
+		"SecretMountPath": path.Join(f4fManagerWd, "secrets")})
 
 	if err != nil {
 		return err
 	}
 
-	err = systemd.InstallUnit("faasd", map[string]string{"Cwd": faasdwd})
+	err = systemd.InstallUnit("f4f-manager", map[string]string{"Cwd": f4fManagerWd})
 	if err != nil {
 		return err
 	}
@@ -78,7 +78,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	err = systemd.Enable("faasd")
+	err = systemd.Enable("f4f-manager")
 	if err != nil {
 		return err
 	}
@@ -88,7 +88,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	err = systemd.Start("faasd")
+	err = systemd.Start("f4f-manager")
 	if err != nil {
 		return err
 	}
@@ -97,7 +97,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
   sudo journalctl -u faasd --lines 100 -f
 
 Login with:
-  sudo -E cat /var/lib/faasd/secrets/basic-auth-password | faas-cli login -s`)
+  sudo -E cat /var/lib/f4f-manager/secrets/basic-auth-password | faas-cli login -s`)
 
 	return nil
 }
