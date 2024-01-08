@@ -10,8 +10,8 @@ import (
 	"path"
 	"strings"
 
+	provider "github.com/forge4flow/forge4flow-manager/pkg/provider"
 	"github.com/openfaas/faas-provider/types"
-	provider "github.com/openfaas/faasd/pkg/provider"
 )
 
 const secretFilePermission = 0644

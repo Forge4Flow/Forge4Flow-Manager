@@ -12,8 +12,8 @@ import (
 	"github.com/containerd/containerd/namespaces"
 	gocni "github.com/containerd/go-cni"
 
+	"github.com/forge4flow/forge4flow-manager/pkg"
 	"github.com/openfaas/faas-provider/types"
-	"github.com/openfaas/faasd/pkg"
 )
 
 func MakeReplicaUpdateHandler(client *containerd.Client, cni gocni.CNI) func(w http.ResponseWriter, r *http.Request) {

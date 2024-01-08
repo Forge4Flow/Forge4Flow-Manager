@@ -58,7 +58,7 @@ install_required_packages() {
     # Debian bullseye is missing iptables. Added to required packages
     # to get it working in raspberry pi. No such known issues in
     # other distros. Hence, adding only to this block.
-    # reference: https://github.com/openfaas/faasd/pull/237
+    # reference: https://github.com/forge4flow/forge4flow-manager/pull/237
     $SUDO apt-get update -y
     $SUDO apt-get install -y curl runc bridge-utils iptables
   elif $(has_yum); then
@@ -119,7 +119,7 @@ install_faasd() {
     ;;
   esac
 
-  $SUDO curl -fSLs "https://github.com/openfaas/faasd/releases/download/${version}/faasd${suffix}" --output "/usr/local/bin/faasd"
+  $SUDO curl -fSLs "https://github.com/forge4flow/forge4flow-manager/releases/download/${version}/faasd${suffix}" --output "/usr/local/bin/faasd"
   $SUDO chmod a+x "/usr/local/bin/faasd"
 
   mkdir -p /tmp/faasd-${version}-installation/hack

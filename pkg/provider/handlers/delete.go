@@ -12,10 +12,10 @@ import (
 	"github.com/containerd/containerd/namespaces"
 	gocni "github.com/containerd/go-cni"
 
+	"github.com/forge4flow/forge4flow-manager/pkg"
+	cninetwork "github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
+	"github.com/forge4flow/forge4flow-manager/pkg/service"
 	"github.com/openfaas/faas-provider/types"
-	"github.com/openfaas/faasd/pkg"
-	cninetwork "github.com/openfaas/faasd/pkg/cninetwork"
-	"github.com/openfaas/faasd/pkg/service"
 )
 
 func MakeDeleteHandler(client *containerd.Client, cni gocni.CNI) func(w http.ResponseWriter, r *http.Request) {

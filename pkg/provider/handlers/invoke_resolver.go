@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/containerd/containerd"
-	faasd "github.com/openfaas/faasd/pkg"
+	faasd "github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 const watchdogPort = 8080

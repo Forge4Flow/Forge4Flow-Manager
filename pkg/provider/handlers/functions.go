@@ -12,9 +12,9 @@ import (
 
 	"github.com/containerd/containerd"
 	"github.com/containerd/containerd/namespaces"
-	"github.com/openfaas/faasd/pkg"
-	faasd "github.com/openfaas/faasd/pkg"
-	"github.com/openfaas/faasd/pkg/cninetwork"
+	"github.com/forge4flow/forge4flow-manager/pkg"
+	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	"github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
 )
 
 type Function struct {

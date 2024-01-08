@@ -10,15 +10,15 @@ import (
 	"path"
 
 	"github.com/containerd/containerd"
+	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	"github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
+	faasdlogs "github.com/forge4flow/forge4flow-manager/pkg/logs"
+	"github.com/forge4flow/forge4flow-manager/pkg/provider/config"
+	"github.com/forge4flow/forge4flow-manager/pkg/provider/handlers"
 	bootstrap "github.com/openfaas/faas-provider"
 	"github.com/openfaas/faas-provider/logs"
 	"github.com/openfaas/faas-provider/proxy"
 	"github.com/openfaas/faas-provider/types"
-	faasd "github.com/openfaas/faasd/pkg"
-	"github.com/openfaas/faasd/pkg/cninetwork"
-	faasdlogs "github.com/openfaas/faasd/pkg/logs"
-	"github.com/openfaas/faasd/pkg/provider/config"
-	"github.com/openfaas/faasd/pkg/provider/handlers"
 	"github.com/spf13/cobra"
 )
 

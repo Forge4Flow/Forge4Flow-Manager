@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/openfaas/faasd/cmd"
+	"github.com/forge4flow/forge4flow-manager/cmd"
 )
 
 // These values will be injected into these variables at the build time.

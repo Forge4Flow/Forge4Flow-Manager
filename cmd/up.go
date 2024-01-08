@@ -17,7 +17,7 @@ import (
 	flag "github.com/spf13/pflag"
 
 	units "github.com/docker/go-units"
-	"github.com/openfaas/faasd/pkg"
+	"github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 // upConfig are the CLI flags used by the `faasd up` command to deploy the faasd service

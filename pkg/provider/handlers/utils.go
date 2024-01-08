@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/openfaas/faasd/pkg"
-	faasd "github.com/openfaas/faasd/pkg"
-	provider "github.com/openfaas/faasd/pkg/provider"
+	"github.com/forge4flow/forge4flow-manager/pkg"
+	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	provider "github.com/forge4flow/forge4flow-manager/pkg/provider"
 )
 
 func getRequestNamespace(namespace string) string {

@@ -1,171 +1,114 @@
-# faasd - a lightweight & portable faas engine
+<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 
-[![Sponsor faasd](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&link=https://github.com/sponsors/openfaas)](https://github.com/sponsors/openfaas)
-[![Build Status](https://github.com/openfaas/faasd/workflows/build/badge.svg?branch=master)](https://github.com/openfaas/faasd/actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Downloads](https://img.shields.io/github/downloads/openfaas/faasd/total)
+<a name="readme-top"></a>
 
-faasd is [OpenFaaS](https://github.com/openfaas/) reimagined, but without the cost and complexity of Kubernetes. It runs on a single host with very modest requirements, making it fast and easy to manage. Under the hood it uses [containerd](https://containerd.io/) and [Container Networking Interface (CNI)](https://github.com/containernetworking/cni) along with the same core OpenFaaS components from the main project.
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-![faasd logo](docs/media/social.png)
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
+<div align="center">
 
-## Use-cases and tutorials
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![ELv2 License][license-shield]][license-url]
+[![CodeFactor][code-factor-shield]][code-factor-url]
 
-faasd is just another way to run OpenFaaS, so many things you read in the docs or in blog posts will work the same way.
+<!-- PROJECT LOGO -->
+<br />
+  <img src="docs/images/logo.png" alt="Logo" width="160" height="160">
 
-Videos and overviews:
+  <h3>Forge4Flow</h3>
 
-* [Exploring of serverless use-cases from commercial and personal users (YouTube)](https://www.youtube.com/watch?v=mzuXVuccaqI)
-* [Meet faasd. Look Ma’ No Kubernetes! (YouTube)](https://www.youtube.com/watch?v=ZnZJXI377ak)
+  <p>
+    <a href="http://forge4flow.gitbook.io/docs"><strong>Explore the docs »</strong></a>
+    <br />
+    <a href="https://github.com/Forge4Flow/Forge4Flow-Manager/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Forge4Flow/Forge4Flow-Manager/issues">Request Feature</a>
+  </p>
 
-Use-cases and tutorials:
+  <h3>Forge4Flow provides ecosystem and developer tools for the Flow Blockchain, including Identity and Access Management, Blockchain Event Monitoring, and SDKs to better integrate dApps with the ecosystem.</h3>
 
-* [Serverless Node.js that you can run anywhere](https://www.openfaas.com/blog/serverless-nodejs/)
-* [Simple Serverless with Golang Functions and Microservices](https://www.openfaas.com/blog/golang-serverless/)
-* [Build a Flask microservice with OpenFaaS](https://www.openfaas.com/blog/openfaas-flask/)
-* [Get started with Java 11 and Vert.x on Kubernetes with OpenFaaS](https://www.openfaas.com/blog/get-started-with-java-openjdk11/)
-* [Deploy to faasd via GitHub Actions](https://www.openfaas.com/blog/openfaas-functions-with-github-actions/)
-* [Scrape and automate websites with Puppeteer](https://www.openfaas.com/blog/puppeteer-scraping/)
+</div>
 
-Additional resources:
+## The problem it solves
 
-* The official handbook - [Serverless For Everyone Else](https://gumroad.com/l/serverless-for-everyone-else)
-* For reference: [OpenFaaS docs](https://docs.openfaas.com)
-* For use-cases and tutorials: [OpenFaaS blog](https://openfaas.com/blog/)
-* For self-paced learning: [OpenFaaS workshop](https://github.com/openfaas/workshop/)
+Developers face challenges in creating dApps due to issues like user authentication, access control, system monitoring, and third-party integration. Forge4Flow aims to address these problems with a developer infrastructure and tooling platform. We're excited to introduce three tool sets to advance the ecosystem:
 
-### About faasd
+### Auth4Flow:
 
-* faasd is a static Golang binary
-* uses the same core components and ecosystem of OpenFaaS
-* uses containerd for its runtime and CNI for networking
-* is multi-arch, so works on Intel `x86_64` and ARM out the box
-* can run almost any other stateful container through its `docker-compose.yaml` file
+> Blockchain-based authentication lacks comprehensive user verification, requiring custom solutions for advanced functionalities and role-based access control. Transitioning to a Web3 environment increases the complexity of achieving secure user access control, both within DApps and when interacting with Web2 technologies. Auth4Flow offers a simple, open-source Identity and Access Management platform that simplifies Web3 authentication. It supports various authorization schemes, including RBAC, FGAC, ReBAC, and NFT/FT gated access.
 
-Most importantly, it's easy to manage so you can set it up and leave it alone to run your functions.
+### Alerts4Flow:
 
-[![demo](https://pbs.twimg.com/media/EPNQz00W4AEwDxM?format=jpg&name=medium)](https://www.youtube.com/watch?v=WX1tZoSXy8E)
+> One of the biggest advanges of the Flow Blockchain is it's ability to emmit events from within contracts, thus allowing developers to react to changes as they occur. Unfortuantley tooling in this area has not been widely developed. With Alerts4Flow developers can easily setup Event Monitors to receive alerts in realtime using Websockets or Webhooks.
 
-> Demo of faasd running asynchronous functions
+### Ecosystem SDKs:
 
-Watch the video: [faasd walk-through with cloud-init and Multipass](https://www.youtube.com/watch?v=WX1tZoSXy8E)
+> Lack of mobile resources is a huge factor for their being verry little Web3 Mobile apps. By releases ecosystem SDKs for multiple platofrms we can lower the barrier to entry for new developers. We have scoped several SDKs to target for Swift (iOS).
 
-### What does faasd deploy?
+By providing these tool sets, we aim to empower developers to focus on delivering exceptional user experiences without worrying about complex authentication, access control, and other Web3 challenges.
 
-* faasd - itself, and its [faas-provider](https://github.com/openfaas/faas-provider) for containerd - CRUD for functions and services, implements the OpenFaaS REST API
-* [Prometheus](https://github.com/prometheus/prometheus) - for monitoring of services, metrics, scaling and dashboards
-* [OpenFaaS Gateway](https://github.com/openfaas/faas/tree/master/gateway) - the UI portal, CLI, and other OpenFaaS tooling can talk to this.
-* [OpenFaaS queue-worker for NATS](https://github.com/openfaas/nats-queue-worker) - run your invocations in the background without adding any code. See also: [asynchronous invocations](https://docs.openfaas.com/reference/triggers/#async-nats-streaming)
-* [NATS](https://nats.io) for asynchronous processing and queues
+<!-- GETTING STARTED -->
 
-faasd relies on industry-standard tools for running containers:
+## Getting Started
 
-* [CNI](https://github.com/containernetworking/plugins)
-* [containerd](https://github.com/containerd/containerd)
-* [runc](https://github.com/opencontainers/runc)
+To get started using Forge4Flow, follow the deployment guide to self host your own instance of Forge4Flow-Manager. Once you have an instance started, follow one of our SDK quick start guides or check out or documentation for more information.
 
-You can use the standard [faas-cli](https://github.com/openfaas/faas-cli) along with pre-packaged functions from *the Function Store*, or build your own using any OpenFaaS template.
+<!-- ROADMAP -->
 
-### When should you use faasd over OpenFaaS on Kubernetes?
+## Roadmap
 
-* To deploy microservices and functions that you can update and monitor remotely
-* When you don't have the bandwidth to learn or manage Kubernetes
-* To deploy embedded apps in IoT and edge use-cases
-* To distribute applications to a customer or client
-* You have a cost sensitive project - run faasd on a 1GB VM for 5-10 USD / mo or on your Raspberry Pi
-* When you just need a few functions or microservices, without the cost of a cluster
+See the [project roadmap](https://projects.forge4flow.com/projects/forge4flow-core/work_packages?query_id=30) for a full list of proposed features (and known issues).
 
-faasd does not create the same maintenance burden you'll find with maintaining, upgrading, and securing a Kubernetes cluster. You can deploy it and walk away, in the worst case, just deploy a new VM and deploy your functions again.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more about supported OpenFaaS features in the [ROADMAP.md](/docs/ROADMAP.md)
+<!-- CONTRIBUTING -->
 
-## Learning faasd
+## Contributing
 
-The faasd project is MIT licensed and open source, and you will find some documentation, blog posts and videos for free.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated** Please see `CONTRIBUTING.md` for more information.
 
-However, "Serverless For Everyone Else" is the official handbook and was written to contribute funds towards the upkeep and maintenance of the project.
+<!-- LICENSE -->
 
-### The official handbook and docs for faasd
+## License
 
-<a href="https://gumroad.com/l/serverless-for-everyone-else">
-<img src="https://www.alexellis.io/serverless.png" width="40%"></a>
+Forge4Flow is distributed under the ELv2 License. See `LICENSE` for more information. Our SDKs are distributed under MIT licenses, see each SDKs GitHub repo for more information.
 
-You'll learn how to deploy code in any language, lift and shift Dockerfiles, run requests in queues, write background jobs and to integrate with databases. faasd packages the same code as OpenFaaS, so you get built-in metrics for your HTTP endpoints, a user-friendly CLI, pre-packaged functions and templates from the store and a UI.
+<!-- ACKNOWLEDGMENTS -->
 
-Topics include:
+## Acknowledgments
 
-* Should you deploy to a VPS or Raspberry Pi?
-* Deploying your server with bash, cloud-init or terraform
-* Using a private container registry
-* Finding functions in the store
-* Building your first function with Node.js
-* Using environment variables for configuration
-* Using secrets from functions, and enabling authentication tokens
-* Customising templates
-* Monitoring your functions with Grafana and Prometheus
-* Scheduling invocations and background jobs
-* Tuning timeouts, parallelism, running tasks in the background
-* Adding TLS to faasd and custom domains for functions
-* Self-hosting on your Raspberry Pi
-* Adding a database for storage with InfluxDB and Postgresql
-* Troubleshooting and logs
-* CI/CD with GitHub Actions and multi-arch
-* Taking things further, community and case-studies
+- [warrant.dev](https://github.com/warrant-dev/warrant) Forge4Flow was built on top an amazing open source authorization project called Warrant. All credit for the Web2 authorization functionality within Forge4Flow goes to the amazing warrant.dev team.
 
-View sample pages, reviews and testimonials on Gumroad:
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-["Serverless For Everyone Else"](https://gumroad.com/l/serverless-for-everyone-else)
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-### Deploy faasd
-
-The easiest way to deploy faasd is with cloud-init, we give several examples below, and post IaaS platforms will accept "user-data" pasted into their UI, or via their API.
-
-For trying it out on MacOS or Windows, we recommend using [multipass](https://multipass.run) to run faasd in a VM.
-
-If you don't use cloud-init, or have already created your Linux server you can use the installation script as per below:
-
-```bash
-git clone https://github.com/openfaas/faasd --depth=1
-cd faasd
-
-./hack/install.sh
-```
-
-> This approach also works for Raspberry Pi
-
-It's recommended that you do not install Docker on the same host as faasd, since 1) they may both use different versions of containerd and 2) docker's networking rules can disrupt faasd's networking. When using faasd - make your faasd server a faasd server, and build container image on your laptop or in a CI pipeline.
-
-#### Deployment tutorials
-
-* [Use multipass on Windows, MacOS or Linux](/docs/MULTIPASS.md)
-* [Deploy to DigitalOcean with Terraform and TLS](https://www.openfaas.com/blog/faasd-tls-terraform/)
-* [Deploy to any IaaS with cloud-init](https://blog.alexellis.io/deploy-serverless-faasd-with-cloud-init/)
-* [Deploy faasd to your Raspberry Pi](https://blog.alexellis.io/faasd-for-lightweight-serverless/)
-
-Terraform scripts:
-
-* [Provision faasd on DigitalOcean with Terraform](docs/bootstrap/README.md)
-* [Provision faasd with TLS on DigitalOcean with Terraform](docs/bootstrap/digitalocean-terraform/README.md)
-
-### Function and template store
-
-For community functions see `faas-cli store --help`
-
-For templates built by the community see: `faas-cli template store list`, you can also use the `dockerfile` template if you just want to migrate an existing service without the benefits of using a template.
-
-### Community support
-
-Commercial users and solo business owners should become OpenFaaS GitHub Sponsors to receive regular email updates on changes, tutorials and new features.
-
-If you are learning faasd, or want to share your use-case, you can join the OpenFaaS Slack community.
-
-* [Become an OpenFaaS GitHub Sponsor](https://github.com/sponsors/openfaas/)
-* [Join the weekly Office Hours call](https://docs.openfaas.com/community/)
-
-### Backlog, features, design limitations and any known issues
-
-For open backlog items, shipped features, design limitations and any known issues, see [ROADMAP.md](docs/ROADMAP.md)
-
-Want to build a patch without setting up a complete development environment? See [docs/PATCHES.md](docs/PATCHES.md)
-
-Are you looking to hack on faasd? Follow the [developer instructions](docs/DEV.md) for a manual installation, or use the `hack/install.sh` script and pick up from there.
+[contributors-shield]: https://img.shields.io/github/contributors/Forge4Flow/Forge4Flow-Manager.svg?style=for-the-badge
+[contributors-url]: https://github.com/Forge4Flow/Forge4Flow-Manager/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Forge4Flow/Forge4Flow-Manager.svg?style=for-the-badge
+[forks-url]: https://github.com/Forge4Flow/Forge4Flow-Manager/network/members
+[stars-shield]: https://img.shields.io/github/stars/Forge4Flow/Forge4Flow-Manager.svg?style=for-the-badge
+[stars-url]: https://github.com/Forge4Flow/Forge4Flow-Manager/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Forge4Flow/Forge4Flow-Manager.svg?style=for-the-badge
+[issues-url]: https://github.com/Forge4Flow/Forge4Flow-Manager/issues
+[license-shield]: https://img.shields.io/badge/license-elv2-blue?style=for-the-badge
+[license-url]: https://github.com/Forge4Flow/Forge4Flow-Manager/blob/master/LICENSE
+[code-factor-shield]: https://img.shields.io/codefactor/grade/github/forge4flow/forge4flow-manager/main?style=for-the-badge
+[code-factor-url]: https://www.codefactor.io/repository/github/forge4flow/forge4flow-manager

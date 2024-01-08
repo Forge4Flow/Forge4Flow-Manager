@@ -13,7 +13,7 @@ import (
 
 	"github.com/openfaas/faas-provider/logs"
 
-	faasd "github.com/openfaas/faasd/pkg"
+	faasd "github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 type requester struct{}
@@ -58,10 +58,10 @@ func (r *requester) Query(ctx context.Context, req logs.Request) (<-chan logs.Me
 
 // buildCmd reeturns the equivalent of
 //
-// 	journalctl -t <namespace>:<name>  \
-// 		--output=json \
-// 		--since=<timestamp> \
-// 		<--follow> \
+//	journalctl -t <namespace>:<name>  \
+//		--output=json \
+//		--since=<timestamp> \
+//		<--follow> \
 func buildCmd(ctx context.Context, req logs.Request) *exec.Cmd {
 	// // set the cursor position based on req, default to 5m
 	since := time.Now().Add(-5 * time.Minute)

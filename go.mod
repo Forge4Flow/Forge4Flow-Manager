@@ -1,4 +1,4 @@
-module github.com/openfaas/faasd
+module github.com/forge4flow/forge4flow-manager
 
 go 1.20
 

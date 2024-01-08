@@ -12,9 +12,9 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/forge4flow/forge4flow-manager/pkg"
+	provider "github.com/forge4flow/forge4flow-manager/pkg/provider"
 	"github.com/openfaas/faas-provider/types"
-	"github.com/openfaas/faasd/pkg"
-	provider "github.com/openfaas/faasd/pkg/provider"
 )
 
 func Test_parseSecret(t *testing.T) {
