@@ -1,11 +1,9 @@
 #!/bin/bash
 
-# Copyright OpenFaaS Author(s) 2022
-
 set -e -x -o pipefail
 
-export OWNER="openfaas"
-export REPO="faasd"
+export OWNER="forge4flow"
+export REPO="forge4flow-manager"
 
 # On CentOS /usr/local/bin is not included in the PATH when using sudo. 
 # Running arkade with sudo on CentOS requires the full path
@@ -37,7 +35,7 @@ fi
 
 verify_system() {
   if ! [ -d /run/systemd ]; then
-    fatal 'Can not find systemd to use as a process supervisor for faasd'
+    fatal 'Can not find systemd to use as a process supervisor for forge4flow-manager'
   fi
 }
 
@@ -58,7 +56,6 @@ install_required_packages() {
     # Debian bullseye is missing iptables. Added to required packages
     # to get it working in raspberry pi. No such known issues in
     # other distros. Hence, adding only to this block.
-    # reference: https://github.com/forge4flow/forge4flow-manager/pull/237
     $SUDO apt-get update -y
     $SUDO apt-get install -y curl runc bridge-utils iptables
   elif $(has_yum); then
@@ -101,7 +98,7 @@ install_containerd() {
   sleep 5
 }
 
-install_faasd() {
+install_forge4flow-manager() {
   arch=$(uname -m)
   case $arch in
   x86_64 | amd64)
@@ -119,17 +116,17 @@ install_faasd() {
     ;;
   esac
 
-  $SUDO curl -fSLs "https://github.com/forge4flow/forge4flow-manager/releases/download/${version}/faasd${suffix}" --output "/usr/local/bin/faasd"
-  $SUDO chmod a+x "/usr/local/bin/faasd"
+  $SUDO curl -fSLs "https://github.com/forge4flow/forge4flow-manager/releases/download/${version}/f4f-manager${suffix}" --output "/usr/local/bin/f4f-manager"
+  $SUDO chmod a+x "/usr/local/bin/f4f-manager"
 
-  mkdir -p /tmp/faasd-${version}-installation/hack
-  cd /tmp/faasd-${version}-installation
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/openfaas/faasd/${version}/docker-compose.yaml" --output "docker-compose.yaml"
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/openfaas/faasd/${version}/prometheus.yml" --output "prometheus.yml"
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/openfaas/faasd/${version}/resolv.conf" --output "resolv.conf"
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/openfaas/faasd/${version}/hack/faasd-provider.service" --output "hack/faasd-provider.service"
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/openfaas/faasd/${version}/hack/faasd.service" --output "hack/faasd.service"
-  $SUDO /usr/local/bin/faasd install
+  mkdir -p /tmp/forge4flow-manager-${version}-installation/hack
+  cd /tmp/forge4flow-manager-${version}-installation
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/docker-compose.yaml" --output "docker-compose.yaml"
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/prometheus.yml" --output "prometheus.yml"
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/resolv.conf" --output "resolv.conf"
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/hack/faasd-provider.service" --output "hack/faasd-provider.service"
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/hack/f4f-manager.service" --output "hack/f4f-manager.service"
+  $SUDO /usr/local/bin/f4f-manager install
 }
 
 install_caddy() {
@@ -157,7 +154,7 @@ install_caddy() {
 }
 
 ${FAASD_DOMAIN} {
-  reverse_proxy 127.0.0.1:8080
+  reverse_proxy 127.0.0.1:8200
 }
 EOF
 
@@ -186,5 +183,5 @@ install_arkade
 install_cni_plugins
 install_containerd
 install_faas_cli
-install_faasd
+install_forge4flow-manager
 install_caddy
