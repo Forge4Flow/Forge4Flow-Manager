@@ -207,7 +207,7 @@ func createTask(ctx context.Context, container containerd.Container, cni gocni.C
 
 	name := container.ID()
 
-	task, taskErr := container.NewTask(ctx, cio.BinaryIO("/usr/local/bin/faasd", nil))
+	task, taskErr := container.NewTask(ctx, cio.BinaryIO("/usr/local/bin/f4f-manager", nil))
 
 	if taskErr != nil {
 		return fmt.Errorf("unable to start task: %s, error: %w", name, taskErr)
