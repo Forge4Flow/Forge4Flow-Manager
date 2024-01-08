@@ -8,7 +8,7 @@ import (
 )
 
 // WelcomeMessage to introduce ofc-bootstrap
-const WelcomeMessage = "Welcome to faasd"
+const WelcomeMessage = "Welcome to Forge4Flow Manager"
 
 func init() {
 	rootCommand.AddCommand(versionCmd)
@@ -43,15 +43,10 @@ func Execute(version, gitCommit string) error {
 }
 
 var rootCommand = &cobra.Command{
-	Use:   "faasd",
-	Short: "Start faasd",
+	Use:   "f4f-manager",
+	Short: "Start Forge4Flow-Manager",
 	Long: `
-faasd - Serverless For Everyone Else
-
-Learn how to build, secure, and monitor functions with faasd with 
-the eBook:
-
-https://gumroad.com/l/serverless-for-everyone-else
+Forge4Flow-Manager - Serverless For Everyone Else
 `,
 	RunE:         runRootCommand,
 	SilenceUsage: true,
@@ -78,7 +73,7 @@ func parseBaseCommand(_ *cobra.Command, _ []string) {
 }
 
 func printVersion() {
-	fmt.Printf("faasd version: %s\tcommit: %s\n", GetVersion(), GitCommit)
+	fmt.Printf("f4f-manager version: %s\tcommit: %s\n", GetVersion(), GitCommit)
 }
 
 func printLogo() {
@@ -95,9 +90,13 @@ func GetVersion() string {
 }
 
 // Logo for version and root command
-const Logo = `  __                     _ 
- / _| __ _  __ _ ___  __| |
-| |_ / _` + "`" + ` |/ _` + "`" + ` / __|/ _` + "`" + ` |
-|  _| (_| | (_| \__ \ (_| |
-|_|  \__,_|\__,_|___/\__,_|
+const Logo = ` _______  _______  _______  _______  _______   ___    _______  _        _______                  _______  _______  _        _______  _______  _______  _______ 
+(  ____ \(  ___  )(  ____ )(  ____ \(  ____ \ /   )  (  ____ \( \      (  ___  )|\     /|       (       )(  ___  )( (    /|(  ___  )(  ____ \(  ____ \(  ____ )
+| (    \/| (   ) || (    )|| (    \/| (    \// /) |  | (    \/| (      | (   ) || )   ( |       | () () || (   ) ||  \  ( || (   ) || (    \/| (    \/| (    )|
+| (__    | |   | || (____)|| |      | (__   / (_) (_ | (__    | |      | |   | || | _ | | _____ | || || || (___) ||   \ | || (___) || |      | (__    | (____)|
+|  __)   | |   | ||     __)| | ____ |  __) (____   _)|  __)   | |      | |   | || |( )| |(_____)| |(_)| ||  ___  || (\ \) ||  ___  || | ____ |  __)   |     __)
+| (      | |   | || (\ (   | | \_  )| (         ) (  | (      | |      | |   | || || || |       | |   | || (   ) || | \   || (   ) || | \_  )| (      | (\ (   
+| )      | (___) || ) \ \__| (___) || (____/\   | |  | )      | (____/\| (___) || () () |       | )   ( || )   ( || )  \  || )   ( || (___) || (____/\| ) \ \__
+|/       (_______)|/   \__/(_______)(_______/   (_)  |/       (_______/(_______)(_______)       |/     \||/     \||/    )_)|/     \|(_______)(_______/|/   \__/
+                                                                                                                                                               
 `

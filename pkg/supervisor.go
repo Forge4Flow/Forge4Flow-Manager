@@ -234,7 +234,7 @@ func (s *Supervisor) Start(svcs []Service) error {
 
 		log.Printf("Created container: %s\n", newContainer.ID())
 
-		task, err := newContainer.NewTask(ctx, cio.BinaryIO("/usr/local/bin/faasd", nil))
+		task, err := newContainer.NewTask(ctx, cio.BinaryIO("/usr/local/bin/f4f-manager", nil))
 		if err != nil {
 			log.Printf("Error creating task: %s\n", err)
 			return err

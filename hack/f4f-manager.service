@@ -1,10 +1,10 @@
 [Unit]
-Description=faasd
+Description=Forge4Flow-Manager
 After=faasd-provider.service
 
 [Service]
 MemoryLimit=500M
-ExecStart=/usr/local/bin/faasd up
+ExecStart=/usr/local/bin/f4f-manager up
 Restart=on-failure
 RestartSec=10s
 WorkingDirectory={{.Cwd}}
