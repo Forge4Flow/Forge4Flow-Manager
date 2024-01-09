@@ -71,7 +71,7 @@ services:
       - faas_nats_port=4222
       - secret_mount_path=/run/secrets
       - scale_from_zero=true
-      - function_namespace=openfaas-fn
+      - function_namespace=functions4flow
     volumes:
       # we assume cwd == /var/lib/f4f-manage
       - type: bind
