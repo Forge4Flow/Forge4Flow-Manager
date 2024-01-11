@@ -267,7 +267,7 @@ func prepareEnv(envProcess string, reqEnvVars map[string]string) []string {
 func getOSMounts() []specs.Mount {
 	// Prior to hosts_dir env-var, this value was set to
 	// os.Getwd()
-	hostsDir := "/var/lib/faasd"
+	hostsDir := "/var/lib/f4f-manager"
 	if v, ok := os.LookupEnv("hosts_dir"); ok && len(v) > 0 {
 		hostsDir = v
 	}

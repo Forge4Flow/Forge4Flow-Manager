@@ -174,7 +174,7 @@ func (s *Supervisor) Start(svcs []Service) error {
 				// Only create directories, not files.
 				// Some files don't have a suffix, such as secrets.
 				if len(path.Ext(mnt.Src)) == 0 &&
-					!strings.HasPrefix(mnt.Src, "/var/lib/faasd/secrets/") {
+					!strings.HasPrefix(mnt.Src, "/var/lib/f4f-manager/secrets/") {
 					// src is already prefixed with wd from an earlier step
 					src := mnt.Src
 					fmt.Printf("Creating local directory: %s\n", src)

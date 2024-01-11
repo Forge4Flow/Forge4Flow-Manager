@@ -101,7 +101,7 @@ services:
       - basic_auth=true
       - secret_mount_path=/run/secrets
     volumes:
-      # we assume cwd == /var/lib/forge4flow
+      # we assume cwd == /var/lib/f4f-manage
       - type: bind
         source: ./secrets/basic-auth-password
         target: /run/secrets/basic-auth-password
