@@ -114,7 +114,7 @@ func TestSecretCreation(t *testing.T) {
 			verb:       http.MethodPost,
 			payload:    `{"name": "foo", "value": "bar"}`,
 			status:     http.StatusOK,
-			secretPath: "/openfaas-fn/foo",
+			secretPath: "/functions4flow/foo",
 			secret:     "bar",
 		},
 		{
@@ -122,7 +122,7 @@ func TestSecretCreation(t *testing.T) {
 			verb:       http.MethodPost,
 			payload:    `{"name": "foo", "rawValue": "YmFy"}`,
 			status:     http.StatusOK,
-			secretPath: "/openfaas-fn/foo",
+			secretPath: "/functions4flow/foo",
 			secret:     "bar",
 		},
 		{

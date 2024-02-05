@@ -94,8 +94,8 @@ func Test_findNamespace(t *testing.T) {
 		Want            bool
 	}
 	tests := []testCase{
-		{Name: "Namespace Found", namespace: "fn", foundNamespaces: []string{"fn", "openfaas-fn"}, Want: true},
-		{Name: "namespace Not Found", namespace: "fn", foundNamespaces: []string{"openfaas-fn"}, Want: false},
+		{Name: "Namespace Found", namespace: "fn", foundNamespaces: []string{"fn", "functions4flow"}, Want: true},
+		{Name: "namespace Not Found", namespace: "fn", foundNamespaces: []string{"functions4flow"}, Want: false},
 	}
 
 	for _, tc := range tests {

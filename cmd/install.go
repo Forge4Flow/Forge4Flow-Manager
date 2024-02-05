@@ -94,10 +94,10 @@ func runInstall(_ *cobra.Command, _ []string) error {
 	}
 
 	fmt.Println(`Check status with:
-  sudo journalctl -u faasd --lines 100 -f
+  sudo journalctl -u f4f-manager --lines 100 -f
 
 Login with:
-  sudo -E cat /var/lib/f4f-manager/secrets/basic-auth-password | faas-cli login -s`)
+  sudo -E cat /var/lib/f4f-manager/secrets/basic-auth-password | forge4flow login -s`)
 
 	return nil
 }
