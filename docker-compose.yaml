@@ -21,6 +21,24 @@ services:
     ports:
       - "5432:5432"
 
+  flow-connector:
+    image: ghcr.io/forge4flow/flow-events-connector:latest
+    # nodoby
+    user: "65534"
+    environment:
+      - secret_mount_path=/run/secrets
+      - basic_auth=true
+    volumes:
+      # we assume cwd == /var/lib/f4f-manage
+      - type: bind
+        source: ./secrets/basic-auth-password
+        target: /run/secrets/basic-auth-password
+      - type: bind
+        source: ./secrets/basic-auth-user
+        target: /run/secrets/basic-auth-user
+    depends_on:
+      - gateway
+
   nats:
     image: docker.io/library/nats-streaming:0.25.6
     # nobody
