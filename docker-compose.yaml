@@ -22,7 +22,7 @@ services:
       - "5432:5432"
 
   flow-connector:
-    image: ghcr.io/forge4flow/flow-events-connector:latest
+    image: ghcr.io/forge4flow/flow-events-connector:v0.0.1
     # nodoby
     user: "65534"
     environment:
