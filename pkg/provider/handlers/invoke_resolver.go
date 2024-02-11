@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/containerd/containerd"
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	manager "github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 const watchdogPort = 8080
@@ -24,7 +24,7 @@ func (i *InvokeResolver) Resolve(functionName string) (url.URL, error) {
 	actualFunctionName := functionName
 	log.Printf("Resolve: %q\n", actualFunctionName)
 
-	namespace := getNamespaceOrDefault(functionName, faasd.DefaultFunctionNamespace)
+	namespace := getNamespaceOrDefault(functionName, manager.DefaultFunctionNamespace)
 
 	if strings.Contains(functionName, ".") {
 		actualFunctionName = strings.TrimSuffix(functionName, "."+namespace)

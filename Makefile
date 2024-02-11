@@ -45,8 +45,8 @@ prepare-test:
 	sudo cp bin/f4f-manager /usr/local/bin/
 	sudo /usr/local/bin/f4f-manager install
 	sudo systemctl status -l containerd --no-pager
-	sudo journalctl -u f4f-manager-provider --no-pager
-	sudo systemctl status -l f4f-manager-provider --no-pager
+	sudo journalctl -u forged-provider --no-pager
+	sudo systemctl status -l forged-provider --no-pager
 	sudo systemctl status -l f4f-manager --no-pager
 	curl -sSLf https://cli.openfaas.com | sudo sh
 	echo "Sleeping for 2m" && sleep 120 && sudo journalctl -u f4f-manager --no-pager

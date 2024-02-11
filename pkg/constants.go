@@ -4,13 +4,13 @@ const (
 	// DefaultFunctionNamespace is the default containerd namespace functions are created
 	DefaultFunctionNamespace = "functions4flow"
 
-	// NamespaceLabel indicates that a namespace is managed by faasd
-	NamespaceLabel = "openfaas"
+	// NamespaceLabel indicates that a namespace is managed by f4f-manager
+	NamespaceLabel = "functions4flow"
 
-	// FaasdNamespace is the containerd namespace services are created
-	FaasdNamespace = "openfaas"
+	// ForgedNamespace is the containerd namespace services are created
+	ForgedNamespace = "f4f-services"
 
-	faasServicesPullAlways = false
+	f4fServicesPullAlways = false
 
 	defaultSnapshotter = "overlayfs"
 )

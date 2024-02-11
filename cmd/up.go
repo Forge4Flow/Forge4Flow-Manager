@@ -25,10 +25,10 @@ type upConfig struct {
 	// See https://compose-spec.io/ for more information about the spec,
 	//
 	// currently, this must be the name of a file in workingDir, which is set to the value of
-	// `faasdwd = /var/lib/f4f-manager`
+	// `f4f-managerwd = /var/lib/f4f-manager`
 	composeFilePath string
 
-	// working directory to assume the compose file is in, should be faasdwd.
+	// working directory to assume the compose file is in, should be f4f-managerwd.
 	// this is not configurable but may be in the future.
 	workingDir string
 }

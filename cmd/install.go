@@ -22,7 +22,7 @@ const workingDirectoryPermission = 0644
 
 const f4fManagerWd = "/var/lib/f4f-manager"
 
-const faasdProviderWd = "/var/lib/faasd-provider"
+const managerProviderWd = "/var/lib/forged-provider"
 
 func runInstall(_ *cobra.Command, _ []string) error {
 
@@ -30,7 +30,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	if err := ensureWorkingDir(faasdProviderWd); err != nil {
+	if err := ensureWorkingDir(managerProviderWd); err != nil {
 		return err
 	}
 
@@ -55,8 +55,8 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	err = systemd.InstallUnit("faasd-provider", map[string]string{
-		"Cwd":             faasdProviderWd,
+	err = systemd.InstallUnit("forged-provider", map[string]string{
+		"Cwd":             managerProviderWd,
 		"SecretMountPath": path.Join(f4fManagerWd, "secrets")})
 
 	if err != nil {
@@ -73,7 +73,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	err = systemd.Enable("faasd-provider")
+	err = systemd.Enable("forged-provider")
 	if err != nil {
 		return err
 	}
@@ -83,7 +83,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
 		return err
 	}
 
-	err = systemd.Start("faasd-provider")
+	err = systemd.Start("forged-provider")
 	if err != nil {
 		return err
 	}

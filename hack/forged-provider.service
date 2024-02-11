@@ -1,5 +1,5 @@
 [Unit]
-Description=faasd-provider
+Description=forged-provider
 
 [Service]
 MemoryLimit=500M

@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-// LocalResolver provides hostname to IP look-up for faasd core services
+// LocalResolver provides hostname to IP look-up for f4f-manager core services
 type LocalResolver struct {
 	Path  string
 	Map   map[string]string

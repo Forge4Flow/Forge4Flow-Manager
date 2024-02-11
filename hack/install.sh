@@ -124,13 +124,13 @@ install_forge4flow-manager() {
   $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/docker-compose.yaml" --output "docker-compose.yaml"
   $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/prometheus.yml" --output "prometheus.yml"
   $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/resolv.conf" --output "resolv.conf"
-  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/hack/faasd-provider.service" --output "hack/faasd-provider.service"
+  $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/hack/forged-provider.service" --output "hack/forged-provider.service"
   $SUDO curl -fSLs "https://raw.githubusercontent.com/forge4flow/forge4flow-manager/${version}/hack/f4f-manager.service" --output "hack/f4f-manager.service"
   $SUDO /usr/local/bin/f4f-manager install
 }
 
 install_caddy() {
-  if [ ! -z "${FAASD_DOMAIN}" ]; then
+  if [ ! -z "${f4f-manager_DOMAIN}" ]; then
     CADDY_VER=v2.4.3
     arkade get --progress=false caddy -v ${CADDY_VER}
     
@@ -153,7 +153,7 @@ install_caddy() {
   email "${LETSENCRYPT_EMAIL}"
 }
 
-${FAASD_DOMAIN} {
+${f4f-manager_DOMAIN} {
   reverse_proxy 127.0.0.1:8200
 }
 EOF
@@ -164,7 +164,7 @@ EOF
     $SUDO systemctl enable caddy
     $SUDO systemctl start caddy
   else
-    echo "Skipping caddy installation as FAASD_DOMAIN."
+    echo "Skipping caddy installation as f4f-manager_DOMAIN."
   fi
 }
 

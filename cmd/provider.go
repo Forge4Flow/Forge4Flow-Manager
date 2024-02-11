@@ -11,7 +11,7 @@ import (
 	"github.com/containerd/containerd"
 	f4fManager "github.com/forge4flow/forge4flow-manager/pkg"
 	"github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
-	faasdlogs "github.com/forge4flow/forge4flow-manager/pkg/logs"
+	managerlogs "github.com/forge4flow/forge4flow-manager/pkg/logs"
 	"github.com/forge4flow/forge4flow-manager/pkg/provider/config"
 	"github.com/forge4flow/forge4flow-manager/pkg/provider/handlers"
 	bootstrap "github.com/openfaas/faas-provider"
@@ -26,7 +26,7 @@ const secretDirPermission = 0755
 func makeProviderCmd() *cobra.Command {
 	var command = &cobra.Command{
 		Use:   "provider",
-		Short: "Run the faasd-provider",
+		Short: "Run the forged-provider",
 	}
 
 	command.Flags().String("pull-policy", "Always", `Set to "Always" to force a pull of images upon deployment, or "IfNotPresent" to try to use a cached image.`)
@@ -53,7 +53,7 @@ func runProviderE(cmd *cobra.Command, _ []string) error {
 		return err
 	}
 
-	log.Printf("faasd-provider starting..\tService Timeout: %s\n", config.WriteTimeout.String())
+	log.Printf("forged-provider starting..\tService Timeout: %s\n", config.WriteTimeout.String())
 	printVersion()
 
 	wd, err := os.Getwd()
@@ -108,7 +108,7 @@ func runProviderE(cmd *cobra.Command, _ []string) error {
 		Info:            handlers.MakeInfoHandler(Version, GitCommit),
 		ListNamespaces:  handlers.MakeNamespacesLister(client),
 		Secrets:         handlers.MakeSecretHandler(client.NamespaceService(), baseUserSecretsPath),
-		Logs:            logs.NewLogHandlerFunc(faasdlogs.New(), config.ReadTimeout),
+		Logs:            logs.NewLogHandlerFunc(managerlogs.New(), config.ReadTimeout),
 		MutateNamespace: handlers.MakeMutateNamespace(client),
 	}
 
@@ -120,7 +120,7 @@ func runProviderE(cmd *cobra.Command, _ []string) error {
 
 /*
 * Mutiple namespace support was added after release 0.13.0
-* Function will help users to migrate on multiple namespace support of faasd
+* Function will help users to migrate on multiple namespace support of f4f-manager
  */
 func moveSecretsToDefaultNamespaceSecrets(baseSecretPath string, defaultNamespace string) error {
 	newSecretPath := path.Join(baseSecretPath, defaultNamespace)

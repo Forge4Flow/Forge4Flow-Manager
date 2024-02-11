@@ -44,7 +44,7 @@ services:
     image: "docker.io/openfaas/gateway:0.18.17${ARCH_SUFFIX}"
     environment:
       - basic_auth=true
-      - functions_provider_url=http://faasd-provider:8081/
+      - functions_provider_url=http://forged-provider:8081/
       - direct_functions=false
       - read_timeout=60s
       - write_timeout=60s

@@ -13,7 +13,7 @@ import (
 	"github.com/containerd/containerd"
 	"github.com/containerd/containerd/namespaces"
 	"github.com/forge4flow/forge4flow-manager/pkg"
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	manager "github.com/forge4flow/forge4flow-manager/pkg"
 	"github.com/forge4flow/forge4flow-manager/pkg/cninetwork"
 )
 
@@ -202,7 +202,7 @@ func ListNamespaces(client *containerd.Client) []string {
 	namespaces, err := store.List(context.Background())
 	if err != nil {
 		log.Printf("Error listing namespaces: %s", err.Error())
-		set = append(set, faasd.DefaultFunctionNamespace)
+		set = append(set, manager.DefaultFunctionNamespace)
 		return set
 	}
 
@@ -217,8 +217,8 @@ func ListNamespaces(client *containerd.Client) []string {
 			set = append(set, namespace)
 		}
 
-		if !findNamespace(faasd.DefaultFunctionNamespace, set) {
-			set = append(set, faasd.DefaultFunctionNamespace)
+		if !findNamespace(manager.DefaultFunctionNamespace, set) {
+			set = append(set, manager.DefaultFunctionNamespace)
 		}
 	}
 

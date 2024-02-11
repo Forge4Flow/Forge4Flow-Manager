@@ -29,7 +29,7 @@ var (
 	Version string
 )
 
-// Execute faasd
+// Execute f4f-manager
 func Execute(version, gitCommit string) error {
 
 	// Get Version and GitCommit values from main.go.

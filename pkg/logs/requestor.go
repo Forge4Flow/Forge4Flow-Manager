@@ -13,7 +13,7 @@ import (
 
 	"github.com/openfaas/faas-provider/logs"
 
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	manager "github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 type requester struct{}
@@ -71,7 +71,7 @@ func buildCmd(ctx context.Context, req logs.Request) *exec.Cmd {
 
 	namespace := req.Namespace
 	if namespace == "" {
-		namespace = faasd.DefaultFunctionNamespace
+		namespace = manager.DefaultFunctionNamespace
 	}
 
 	// find the description of the fields here

@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	manager "github.com/forge4flow/forge4flow-manager/pkg"
 )
 
 func Test_getRequestNamespace(t *testing.T) {
@@ -15,7 +15,7 @@ func Test_getRequestNamespace(t *testing.T) {
 		requestNamespace  string
 		expectedNamespace string
 	}{
-		{name: "RequestNamespace is not provided", requestNamespace: "", expectedNamespace: faasd.DefaultFunctionNamespace},
+		{name: "RequestNamespace is not provided", requestNamespace: "", expectedNamespace: manager.DefaultFunctionNamespace},
 		{name: "RequestNamespace is provided", requestNamespace: "user-namespace", expectedNamespace: "user-namespace"},
 	}
 
@@ -36,7 +36,7 @@ func Test_getNamespaceSecretMountPath(t *testing.T) {
 		requestNamespace   string
 		expectedSecretPath string
 	}{
-		{name: "Default Namespace is provided", requestNamespace: faasd.DefaultFunctionNamespace, expectedSecretPath: "/var/openfaas/secrets/" + faasd.DefaultFunctionNamespace},
+		{name: "Default Namespace is provided", requestNamespace: manager.DefaultFunctionNamespace, expectedSecretPath: "/var/openfaas/secrets/" + manager.DefaultFunctionNamespace},
 		{name: "User Namespace is provided", requestNamespace: "user-namespace", expectedSecretPath: "/var/openfaas/secrets/user-namespace"},
 	}
 

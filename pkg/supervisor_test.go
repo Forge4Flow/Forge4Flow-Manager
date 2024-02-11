@@ -57,7 +57,7 @@ func Test_ParseCompose(t *testing.T) {
 				"direct_functions=false",
 				"faas_nats_address=nats",
 				"faas_nats_port=4222",
-				"functions_provider_url=http://faasd-provider:8081/",
+				"functions_provider_url=http://forged-provider:8081/",
 				"read_timeout=60s",
 				"scale_from_zero=true",
 				"secret_mount_path=/run/secrets",
@@ -196,7 +196,7 @@ func Test_GetArchSuffix(t *testing.T) {
 		{
 			name:    "error if os is not linux",
 			foundOS: "mac",
-			err:     "you can only use faasd with Linux",
+			err:     "you can only use f4f-manager with Linux",
 		},
 		{
 			name:      "x86 has no suffix",

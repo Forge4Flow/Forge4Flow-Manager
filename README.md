@@ -41,25 +41,37 @@
     <a href="https://github.com/Forge4Flow/Forge4Flow-Manager/issues">Request Feature</a>
   </p>
 
-  <h3>Forge4Flow provides ecosystem and developer tools for the Flow Blockchain, including Identity and Access Management, Blockchain Event Monitoring, and SDKs to better integrate dApps with the ecosystem.</h3>
+  <h3>Forge4Flow provides a Backend as a Service (BaaS) for the Flow Blockchain, offering a suite of tools for developers to build decentralized applications (dApps) seamlessly.</h3>
 
 </div>
 
 ## The problem it solves
 
-Developers face challenges in creating dApps due to issues like user authentication, access control, system monitoring, and third-party integration. Forge4Flow aims to address these problems with a developer infrastructure and tooling platform. We're excited to introduce three tool sets to advance the ecosystem:
+Developers face challenges in creating dApps due to issues like user authentication, access control, system monitoring, and third-party integration. Forge4Flow aims to address these problems with a comprehensive Backend as a Service (BaaS) platform. We're excited to introduce several tool sets to empower developers and enhance the ecosystem:
 
-### Auth4Flow:
+### Auth4Flow (Beta Released):
 
-> Blockchain-based authentication lacks comprehensive user verification, requiring custom solutions for advanced functionalities and role-based access control. Transitioning to a Web3 environment increases the complexity of achieving secure user access control, both within DApps and when interacting with Web2 technologies. Auth4Flow offers a simple, open-source Identity and Access Management platform that simplifies Web3 authentication. It supports various authorization schemes, including RBAC, FGAC, ReBAC, and NFT/FT gated access.
+> Simplify Web3 access with our open-source Identity and Access Management platform. Auth4Flow supports RBAC, FGAC, ReBAC, and NFT/FT gated access for seamless user verification in DApps and Web2.
 
-### Alerts4Flow:
+### Functions4Flow (Beta Released):
 
-> One of the biggest advanges of the Flow Blockchain is it's ability to emmit events from within contracts, thus allowing developers to react to changes as they occur. Unfortuantley tooling in this area has not been widely developed. With Alerts4Flow developers can easily setup Event Monitors to receive alerts in realtime using Websockets or Webhooks.
+> Power your Flow blockchain projects with Functions4Flow's serverless platform. Easily deploy NodeJS and Go functions for dynamic dApp functionalities.
 
-### Ecosystem SDKs:
+### Database4Flow (In Development):
 
-> Lack of mobile resources is a huge factor for their being verry little Web3 Mobile apps. By releases ecosystem SDKs for multiple platofrms we can lower the barrier to entry for new developers. We have scoped several SDKs to target for Swift (iOS).
+> Fuel your decentralized projects with Database4Flow, providing a robust database for seamless data management.
+
+### Storage4Flow (In Development):
+
+> Elevate data handling in Forge4Flow with Storage4Flow, offering secure and scalable storage functionalities for your decentralized applications.
+
+### Realtime4Flow (In Development):
+
+> Transform your dApps with Realtime4Flow, empowering dynamic interactions and data synchronization for an immersive user experience.
+
+### FlowComponents (In Development):
+
+> Simplify mobile dApp development on Flow Blockchain with our open-source SwiftUI library. Offering reusable views and intuitive extensions for robust and user-friendly interfaces.
 
 By providing these tool sets, we aim to empower developers to focus on delivering exceptional user experiences without worrying about complex authentication, access control, and other Web3 challenges.
 
@@ -67,13 +79,13 @@ By providing these tool sets, we aim to empower developers to focus on deliverin
 
 ## Getting Started
 
-To get started using Forge4Flow, follow the deployment guide to self host your own instance of Forge4Flow-Manager. Once you have an instance started, follow one of our SDK quick start guides or check out or documentation for more information.
+To get started using Forge4Flow, follow the deployment guide to self-host your own instance of Forge4Flow-Manager. Once you have an instance started, use the CLI and follow one of our SDK quick start guides or check out our documentation for more information.
 
 <!-- ROADMAP -->
 
 ## Roadmap
 
-See the [project roadmap](https://projects.forge4flow.com/projects/forge4flow-core/work_packages?query_id=30) for a full list of proposed features (and known issues).
+See the [project roadmaps](https://projects.forge4flow.com) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -81,19 +93,20 @@ See the [project roadmap](https://projects.forge4flow.com/projects/forge4flow-co
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated** Please see `CONTRIBUTING.md` for more information.
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see `CONTRIBUTING.md` for more information.
 
 <!-- LICENSE -->
 
 ## License
 
-Forge4Flow is distributed under the ELv2 License. See `LICENSE` for more information. Our SDKs are distributed under MIT licenses, see each SDKs GitHub repo for more information.
+Forge4Flow is distributed under the ELv2 License. See `LICENSE` for more information. Our SDKs are distributed under MIT licenses; see each SDK's GitHub repo for more information.
 
 <!-- ACKNOWLEDGMENTS -->
 
 ## Acknowledgments
 
-- [warrant.dev](https://github.com/warrant-dev/warrant) Forge4Flow was built on top an amazing open source authorization project called Warrant. All credit for the Web2 authorization functionality within Forge4Flow goes to the amazing warrant.dev team.
+- [OpenFaaS](https://www.openfaas.com): Forge4Flow was built on top of the amazing serverless functions project OpenFaaS. The Forge4Flow-Manager, CLI, and events connector are all either based on or heavily inspired by several of their projects.
+- [warrant.dev](https://github.com/warrant-dev/warrant): Auth4Flow is a fork of an amazing open-source authorization project called Warrant. All credit for the Web2 authorization functionality within Auth4Flow goes to the amazing warrant.dev team.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

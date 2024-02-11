@@ -12,10 +12,10 @@ const (
 	OrchestrationIdentifier = "containerd"
 
 	// ProviderName name of the provider
-	ProviderName = "faasd"
+	ProviderName = "f4f-manager"
 )
 
-//MakeInfoHandler creates handler for /system/info endpoint
+// MakeInfoHandler creates handler for /system/info endpoint
 func MakeInfoHandler(version, sha string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Body != nil {

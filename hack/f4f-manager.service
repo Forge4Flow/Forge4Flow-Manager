@@ -1,6 +1,6 @@
 [Unit]
 Description=Forge4Flow-Manager
-After=faasd-provider.service
+After=forged-provider.service
 
 [Service]
 MemoryLimit=500M

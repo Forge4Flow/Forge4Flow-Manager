@@ -6,7 +6,7 @@ import (
 	"path"
 
 	"github.com/forge4flow/forge4flow-manager/pkg"
-	faasd "github.com/forge4flow/forge4flow-manager/pkg"
+	manager "github.com/forge4flow/forge4flow-manager/pkg"
 	provider "github.com/forge4flow/forge4flow-manager/pkg/provider"
 )
 
@@ -15,7 +15,7 @@ func getRequestNamespace(namespace string) string {
 	if len(namespace) > 0 {
 		return namespace
 	}
-	return faasd.DefaultFunctionNamespace
+	return manager.DefaultFunctionNamespace
 }
 
 func readNamespaceFromQuery(r *http.Request) string {
@@ -30,7 +30,7 @@ func getNamespaceSecretMountPath(userSecretPath string, namespace string) string
 // validNamespace indicates whether the namespace is eligable to be
 // used for OpenFaaS functions.
 func validNamespace(store provider.Labeller, namespace string) (bool, error) {
-	if namespace == faasd.DefaultFunctionNamespace {
+	if namespace == manager.DefaultFunctionNamespace {
 		return true, nil
 	}
 

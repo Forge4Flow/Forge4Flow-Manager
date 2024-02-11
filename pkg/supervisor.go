@@ -57,7 +57,7 @@ type ServicePort struct {
 }
 
 type Mount struct {
-	// Src relative to the working directory for faasd
+	// Src relative to the working directory for f4f-manager
 	Src string
 
 	// Dest is the absolute path within the container
@@ -90,7 +90,7 @@ func NewSupervisor(sock string) (*Supervisor, error) {
 }
 
 func (s *Supervisor) Start(svcs []Service) error {
-	ctx := namespaces.WithNamespace(context.Background(), FaasdNamespace)
+	ctx := namespaces.WithNamespace(context.Background(), ForgedNamespace)
 
 	wd, _ := os.Getwd()
 
@@ -100,7 +100,7 @@ func (s *Supervisor) Start(svcs []Service) error {
 	}
 	hosts := fmt.Sprintf(`
 127.0.0.1	localhost
-%s	faasd-provider`, gw)
+%s	forged-provider`, gw)
 
 	writeHostsErr := ioutil.WriteFile(path.Join(wd, "hosts"),
 		[]byte(hosts), workingDirectoryPermission)
@@ -121,7 +121,7 @@ func (s *Supervisor) Start(svcs []Service) error {
 
 		imgRef := reference.TagNameOnly(r).String()
 
-		img, err := service.PrepareImage(ctx, s.client, imgRef, defaultSnapshotter, faasServicesPullAlways)
+		img, err := service.PrepareImage(ctx, s.client, imgRef, defaultSnapshotter, f4fServicesPullAlways)
 		if err != nil {
 			return err
 		}
@@ -290,7 +290,7 @@ func (s *Supervisor) Close() {
 }
 
 func (s *Supervisor) Remove(svcs []Service) error {
-	ctx := namespaces.WithNamespace(context.Background(), FaasdNamespace)
+	ctx := namespaces.WithNamespace(context.Background(), ForgedNamespace)
 
 	for _, svc := range svcs {
 		err := cninetwork.DeleteCNINetwork(ctx, s.cni, s.client, svc.Name)
@@ -445,7 +445,7 @@ func GetArchSuffix(getClientArch ArchGetter) (suffix string, err error) {
 	clientArch, clientOS := getClientArch()
 
 	if clientOS != "Linux" {
-		return "", fmt.Errorf("you can only use faasd with Linux")
+		return "", fmt.Errorf("you can only use f4f-manager with Linux")
 	}
 
 	switch clientArch {
