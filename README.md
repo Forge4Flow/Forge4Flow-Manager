@@ -95,12 +95,6 @@ See the [project roadmaps](https://projects.forge4flow.com) for a full list of p
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see `CONTRIBUTING.md` for more information.
 
-<!-- LICENSE -->
-
-## License
-
-Forge4Flow is distributed under the ELv2 License. See `LICENSE` for more information. Our SDKs are distributed under MIT licenses; see each SDK's GitHub repo for more information.
-
 <!-- ACKNOWLEDGMENTS -->
 
 ## Acknowledgments
