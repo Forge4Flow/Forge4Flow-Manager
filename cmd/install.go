@@ -97,7 +97,7 @@ func runInstall(_ *cobra.Command, _ []string) error {
   sudo journalctl -u f4f-manager --lines 100 -f
 
 Login with:
-  sudo -E cat /var/lib/f4f-manager/secrets/basic-auth-password | forge4flow login -s`)
+  sudo -E cat /var/lib/f4f-manager/secrets/basic-auth-password | forge-cli login -s`)
 
 	return nil
 }

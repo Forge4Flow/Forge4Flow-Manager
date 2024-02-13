@@ -129,49 +129,31 @@ install_forge4flow-manager() {
   $SUDO /usr/local/bin/f4f-manager install
 }
 
-install_caddy() {
-  if [ ! -z "${f4f-manager_DOMAIN}" ]; then
-    CADDY_VER=v2.4.3
-    arkade get --progress=false caddy -v ${CADDY_VER}
-    
-    # /usr/bin/caddy is specified in the upstream service file.
-    $SUDO install -m 755 $HOME/.arkade/bin/caddy /usr/bin/caddy
+install_forge_cli() {
+  echo "Installing forge-cli..."
+  # Determine system architecture
+  arch=$(uname -m)
+  case $arch in
+  x86_64 | amd64)
+    suffix=""
+    ;;
+  aarch64)
+    suffix=-arm64
+    ;;
+  armv7l)
+    suffix=-armhf
+    ;;
+  *)
+    echo "Unsupported architecture $arch"
+    exit 1
+    ;;
+  esac
 
-    $SUDO curl -fSLs https://raw.githubusercontent.com/caddyserver/dist/master/init/caddy.service --output /etc/systemd/system/caddy.service
-
-    $SUDO mkdir -p /etc/caddy
-    $SUDO mkdir -p /var/lib/caddy
-    
-    if $(id caddy >/dev/null 2>&1); then
-      echo "User caddy already exists."
-    else
-      $SUDO useradd --system --home /var/lib/caddy --shell /bin/false caddy
-    fi
-
-    $SUDO tee /etc/caddy/Caddyfile >/dev/null <<EOF
-{
-  email "${LETSENCRYPT_EMAIL}"
+  # Download the appropriate binary
+  $SUDO curl -fsSL https://github.com/forge4flow/forge-cli/releases/latest/download/forge-cli${suffix} --output /usr/local/bin/forge-cli
+  $SUDO chmod +x /usr/local/bin/forge-cli
 }
 
-${f4f-manager_DOMAIN} {
-  reverse_proxy 127.0.0.1:8200
-}
-EOF
-
-    $SUDO chown --recursive caddy:caddy /var/lib/caddy
-    $SUDO chown --recursive caddy:caddy /etc/caddy
-
-    $SUDO systemctl enable caddy
-    $SUDO systemctl start caddy
-  else
-    echo "Skipping caddy installation as f4f-manager_DOMAIN."
-  fi
-}
-
-install_faas_cli() {
-  arkade get --progress=false faas-cli
-  $SUDO install -m 755 $HOME/.arkade/bin/faas-cli /usr/local/bin/
-}
 
 verify_system
 install_required_packages
@@ -182,6 +164,5 @@ echo "net.ipv4.conf.all.forwarding=1" | $SUDO tee -a /etc/sysctl.conf
 install_arkade
 install_cni_plugins
 install_containerd
-install_faas_cli
+install_forge_cli
 install_forge4flow-manager
-install_caddy
