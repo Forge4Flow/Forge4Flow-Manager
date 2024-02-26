@@ -1,25 +1,25 @@
 version: "3.7"
 services:
-  database:
-    image: docker.io/library/postgres:16-alpine
-    # nobody
-    user: "65534"
-    environment:
-      - POSTGRES_PASSWORD=S3cret
-      - POSTGRES_USER=f4fCore
-      - POSTGRES_DB=forge4flow
-    volumes:
-      # Data directory
-      - type: bind
-        source: ./postgresqlData
-        target: /var/lib/postgresql/data
-      - type: bind
-        source: ./postgresql
-        target: /var/run/postgresql
-    cap_add:
-      - CAP_NET_RAW
-    ports:
-      - "5432:5432"
+  # database:
+  #   image: docker.io/library/postgres:16-alpine
+  #   # nobody
+  #   user: "65534"
+  #   environment:
+  #     - POSTGRES_PASSWORD=S3cret
+  #     - POSTGRES_USER=f4fCore
+  #     - POSTGRES_DB=forge4flow
+  #   volumes:
+  #     # Data directory
+  #     - type: bind
+  #       source: ./postgresqlData
+  #       target: /var/lib/postgresql/data
+  #     - type: bind
+  #       source: ./postgresql
+  #       target: /var/run/postgresql
+  #   cap_add:
+  #     - CAP_NET_RAW
+  #   ports:
+  #     - "5432:5432"
 
   flow-connector:
     image: ghcr.io/forge4flow/flow-events-connector:v0.0.1
